@@ -21,7 +21,7 @@ html,body { height:100%; overflow:hidden; background:var(--bg); color:var(--text
 
 /* CAMERA */
 #camera-container { position:relative; flex:1; overflow:hidden; background:#000; }
-#video { width:100%; height:100%; object-fit:cover; display:block; transform:scaleX(-1); }
+#video { width:100%; height:100%; object-fit:cover; display:block; }
 #canvas-hidden { display:none; }
 
 /* MAGNIFIER */
@@ -508,7 +508,7 @@ function handleTap(e) {
   canvas.width=video.videoWidth; canvas.height=video.videoHeight;
   ctx.drawImage(video,0,0);
   const rect2=cont.getBoundingClientRect();
-  const mx=1-(x/rect2.width), my=y/rect2.height;
+  const mx=x/rect2.width, my=y/rect2.height;
   const px=sampleRobust(Math.floor(mx*canvas.width), Math.floor(my*canvas.height), 14);
 
   if(px) {
@@ -539,7 +539,7 @@ function moveMagnifier(cx, cy) {
   canvas.width=video.videoWidth; canvas.height=video.videoHeight;
   ctx.drawImage(video,0,0);
 
-  const mx=(1-(x/rect.width))*canvas.width;
+  const mx=(x/rect.width)*canvas.width;
   const my=(y/rect.height)*canvas.height;
   const zoom=4, size=90;
   const sx=mx-(size/zoom/2), sy=my-(size/zoom/2);
